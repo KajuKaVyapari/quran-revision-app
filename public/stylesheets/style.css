@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  /*background: rgb(66, 66, 66);*/
+  background: linear-gradient(to right, rgb(22, 22, 22), rgb(66, 66, 66), rgb(22, 22, 22) );
+
+  color: cyan;
+  overflow-y: scroll;
+}
+
+#title {
+  font-size: 8vmin;
+  font-family: Verdana;
+  text-align: center;
+  text-decoration: dotted underline;
+
+  color: white;
+}
+
+
+#surahs {
+  margin: 15vmin;
+
+  border: 5px solid black;
+  padding: 10vmin;
+
+  /*background: linear-gradient(to bottom, rgb(44, 44, 44), rgb(66, 66, 66), rgb(44, 44, 44) );*/
+  background: rgb(44, 44 , 44);
+
+  box-shadow: 0 0 10px 10px cyan;
+}
+
+
+.description, .surah-name {
+  font-size: 5vmin;
+  font-family: Roboto Slab;
+  /*text-align: center;*/
+  text-decoration: dashed underline;
+}
+
+button {
+
+  background: none;
+  cursor: pointer;
+
+  color: cyan;
+  text-decoration: none;
+
+  font-size: 4vmin;
+  padding: 1vmin 2vmin 1vmin 2vmin;
+
+  font-family: Rubik;
+
+  border: 3px solid;
+  border-radius: 3.5vmin;
+}
+
+.surah-name {
+  width: 100%;
+  display: flex;
+}
+
+.done-button {
+  text-decoration: none;
+  margin-left: auto;
+}
+
+.surah-date {
+  margin-left: auto;
+  /*margin-right: 10vmin;*/
+}
+
+#switch-state {
+  display: block;
+  margin: auto;
+}
+
+.name-span {
+  width: 50vmin;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quran Revisor App</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <h1 id="title">Quran Revisor App</h1>
+    <button id="switch-state" onclick="switchState()">Switch to Non-Memorised</button>
+    <section id="surahs">
+    </section>
+
+    <script>
+      const getSurahs = (url) => {
+        fetch(url).then(response => response.json()).then(surahs => {
+          let surahsHTML = ''
+          for (let i in surahs) {
+            const dateHTML = state == 'memorised' ? "<span class=\"surah-date\">" + new Date(surahs[i].lastRevised).toDateString() + "</span>" : ""
+            surahsHTML += "<h2 class=\"surah-name\" number=\"" + surahs[i].number + "\">" + "<span class=\"name-span\">" + surahs[i].name + "</span>" + dateHTML + "<button class=\"done-button\" onclick=\"done(this)\">Done</button>" + "</h2>"
+          }
+          document.querySelector("#surahs").innerHTML = surahsHTML
+        })
+      }
+      let state;
+
+      const setState = (mode) => {
+        state = mode
+        getSurahs("/surahs/" + state)
+
+        if (state == 'memorised') {
+          document.querySelector("#switch-state").innerText = "Switch to Non Memorised"
+        }
+
+        if (state == 'nonMemorised') {
+          document.querySelector("#switch-state").innerText = "Switch to Memorised"
+        }
+      }
+
+      const switchState = () => {
+        let futureState = state == 'nonMemorised' ? 'memorised': 'nonMemorised'
+        setState(futureState)
+      }
+
+      const done = (btn) => {
+
+        const doneUrl = (state == 'nonMemorised' ? '/memorise/' : '/revise/') + parseInt(btn.parentElement.getAttribute('number'))
+
+        fetch(doneUrl)
+        let timeoutID = setTimeout(() => setState(state), 1000)
+      }
+
+      setState('memorised')
+    </script>
+  </body>
+</html>
